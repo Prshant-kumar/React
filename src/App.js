@@ -1,7 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
+import { increament } from "./ReduxReducer/Actions/counterAction";
 
 function App() {
+  const dispatch = useDispatch();
+  const store = useSelector((store) => store);
+  console.log(store);
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +23,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <button onClick={() => dispatch(increament())}>increment</button>
     </div>
   );
 }
