@@ -1,7 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { increment } from "./Redux/Actions/counterAction";
 
 function App() {
+  const counterReducer = useSelector((store) => store.counterReducer);
+  const dispatch = useDispatch();
+
+  console.log("-----------", counterReducer);
+  useEffect(() => {
+    dispatch(increment());
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +29,14 @@ function App() {
           Learn React
         </a>
       </header>
+
+      <button
+        onClick={() => {
+          dispatch(increment());
+        }}
+      >
+        +
+      </button>
     </div>
   );
 }
